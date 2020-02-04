@@ -1,0 +1,19 @@
+ type Query {
+    shoppinglists(name:String) : [Shoppinglist!]
+ }
+ type Shoppinglist {
+    id: ID!
+    name: String!
+    lists: [Items!]
+ }
+
+type Items {
+    name: String!
+    price: Int!
+    ShoppinglistOwner:Shoppinglist
+
+}
+type Mutation {
+  postshopplinglist(name: String!): Shoppinglist!
+
+}
