@@ -1,19 +1,22 @@
  type Query {
     shoppinglists(name:String) : [Shoppinglist!]
+    items(name:String) : [Item!]
  }
  type Shoppinglist {
     id: ID!
     name: String!
-    lists: [Items!]
+    list: [Item!]
  }
 
-type Items {
+type Item {
+    id: ID!
     name: String!
     price: Int!
-    ShoppinglistOwner:Shoppinglist
+    owner:Shoppinglist!
 
 }
 type Mutation {
-  postshopplinglist(name: String!): Shoppinglist!
+  postshopplinglist(name: String!, item: String, price: Int): Shoppinglist!
+  postitem(shoppinglistId: String, item: String, price: Int ):Item!
 
 }

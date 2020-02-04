@@ -3,7 +3,7 @@ module.exports = {
   // Please don't change this file manually but run `prisma generate` to update it.
   // For more information, please read the docs: https://www.prisma.io/docs/prisma-client/
 
-/* GraphQL */ `type AggregateItems {
+/* GraphQL */ `type AggregateItem {
   count: Int!
 }
 
@@ -15,43 +15,43 @@ type BatchPayload {
   count: Long!
 }
 
-type Items {
+type Item {
   id: ID!
   name: String!
   price: Int!
-  ShoppinglistOwner: Shoppinglist
+  owner: Shoppinglist
 }
 
-type ItemsConnection {
+type ItemConnection {
   pageInfo: PageInfo!
-  edges: [ItemsEdge]!
-  aggregate: AggregateItems!
+  edges: [ItemEdge]!
+  aggregate: AggregateItem!
 }
 
-input ItemsCreateInput {
+input ItemCreateInput {
   id: ID
   name: String!
   price: Int!
-  ShoppinglistOwner: ShoppinglistCreateOneWithoutListsInput
+  owner: ShoppinglistCreateOneWithoutListInput
 }
 
-input ItemsCreateManyWithoutShoppinglistOwnerInput {
-  create: [ItemsCreateWithoutShoppinglistOwnerInput!]
-  connect: [ItemsWhereUniqueInput!]
+input ItemCreateManyWithoutOwnerInput {
+  create: [ItemCreateWithoutOwnerInput!]
+  connect: [ItemWhereUniqueInput!]
 }
 
-input ItemsCreateWithoutShoppinglistOwnerInput {
+input ItemCreateWithoutOwnerInput {
   id: ID
   name: String!
   price: Int!
 }
 
-type ItemsEdge {
-  node: Items!
+type ItemEdge {
+  node: Item!
   cursor: String!
 }
 
-enum ItemsOrderByInput {
+enum ItemOrderByInput {
   id_ASC
   id_DESC
   name_ASC
@@ -60,13 +60,13 @@ enum ItemsOrderByInput {
   price_DESC
 }
 
-type ItemsPreviousValues {
+type ItemPreviousValues {
   id: ID!
   name: String!
   price: Int!
 }
 
-input ItemsScalarWhereInput {
+input ItemScalarWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -103,79 +103,79 @@ input ItemsScalarWhereInput {
   price_lte: Int
   price_gt: Int
   price_gte: Int
-  AND: [ItemsScalarWhereInput!]
-  OR: [ItemsScalarWhereInput!]
-  NOT: [ItemsScalarWhereInput!]
+  AND: [ItemScalarWhereInput!]
+  OR: [ItemScalarWhereInput!]
+  NOT: [ItemScalarWhereInput!]
 }
 
-type ItemsSubscriptionPayload {
+type ItemSubscriptionPayload {
   mutation: MutationType!
-  node: Items
+  node: Item
   updatedFields: [String!]
-  previousValues: ItemsPreviousValues
+  previousValues: ItemPreviousValues
 }
 
-input ItemsSubscriptionWhereInput {
+input ItemSubscriptionWhereInput {
   mutation_in: [MutationType!]
   updatedFields_contains: String
   updatedFields_contains_every: [String!]
   updatedFields_contains_some: [String!]
-  node: ItemsWhereInput
-  AND: [ItemsSubscriptionWhereInput!]
-  OR: [ItemsSubscriptionWhereInput!]
-  NOT: [ItemsSubscriptionWhereInput!]
+  node: ItemWhereInput
+  AND: [ItemSubscriptionWhereInput!]
+  OR: [ItemSubscriptionWhereInput!]
+  NOT: [ItemSubscriptionWhereInput!]
 }
 
-input ItemsUpdateInput {
+input ItemUpdateInput {
   name: String
   price: Int
-  ShoppinglistOwner: ShoppinglistUpdateOneWithoutListsInput
+  owner: ShoppinglistUpdateOneWithoutListInput
 }
 
-input ItemsUpdateManyDataInput {
-  name: String
-  price: Int
-}
-
-input ItemsUpdateManyMutationInput {
+input ItemUpdateManyDataInput {
   name: String
   price: Int
 }
 
-input ItemsUpdateManyWithoutShoppinglistOwnerInput {
-  create: [ItemsCreateWithoutShoppinglistOwnerInput!]
-  delete: [ItemsWhereUniqueInput!]
-  connect: [ItemsWhereUniqueInput!]
-  set: [ItemsWhereUniqueInput!]
-  disconnect: [ItemsWhereUniqueInput!]
-  update: [ItemsUpdateWithWhereUniqueWithoutShoppinglistOwnerInput!]
-  upsert: [ItemsUpsertWithWhereUniqueWithoutShoppinglistOwnerInput!]
-  deleteMany: [ItemsScalarWhereInput!]
-  updateMany: [ItemsUpdateManyWithWhereNestedInput!]
-}
-
-input ItemsUpdateManyWithWhereNestedInput {
-  where: ItemsScalarWhereInput!
-  data: ItemsUpdateManyDataInput!
-}
-
-input ItemsUpdateWithoutShoppinglistOwnerDataInput {
+input ItemUpdateManyMutationInput {
   name: String
   price: Int
 }
 
-input ItemsUpdateWithWhereUniqueWithoutShoppinglistOwnerInput {
-  where: ItemsWhereUniqueInput!
-  data: ItemsUpdateWithoutShoppinglistOwnerDataInput!
+input ItemUpdateManyWithoutOwnerInput {
+  create: [ItemCreateWithoutOwnerInput!]
+  delete: [ItemWhereUniqueInput!]
+  connect: [ItemWhereUniqueInput!]
+  set: [ItemWhereUniqueInput!]
+  disconnect: [ItemWhereUniqueInput!]
+  update: [ItemUpdateWithWhereUniqueWithoutOwnerInput!]
+  upsert: [ItemUpsertWithWhereUniqueWithoutOwnerInput!]
+  deleteMany: [ItemScalarWhereInput!]
+  updateMany: [ItemUpdateManyWithWhereNestedInput!]
 }
 
-input ItemsUpsertWithWhereUniqueWithoutShoppinglistOwnerInput {
-  where: ItemsWhereUniqueInput!
-  update: ItemsUpdateWithoutShoppinglistOwnerDataInput!
-  create: ItemsCreateWithoutShoppinglistOwnerInput!
+input ItemUpdateManyWithWhereNestedInput {
+  where: ItemScalarWhereInput!
+  data: ItemUpdateManyDataInput!
 }
 
-input ItemsWhereInput {
+input ItemUpdateWithoutOwnerDataInput {
+  name: String
+  price: Int
+}
+
+input ItemUpdateWithWhereUniqueWithoutOwnerInput {
+  where: ItemWhereUniqueInput!
+  data: ItemUpdateWithoutOwnerDataInput!
+}
+
+input ItemUpsertWithWhereUniqueWithoutOwnerInput {
+  where: ItemWhereUniqueInput!
+  update: ItemUpdateWithoutOwnerDataInput!
+  create: ItemCreateWithoutOwnerInput!
+}
+
+input ItemWhereInput {
   id: ID
   id_not: ID
   id_in: [ID!]
@@ -212,13 +212,13 @@ input ItemsWhereInput {
   price_lte: Int
   price_gt: Int
   price_gte: Int
-  ShoppinglistOwner: ShoppinglistWhereInput
-  AND: [ItemsWhereInput!]
-  OR: [ItemsWhereInput!]
-  NOT: [ItemsWhereInput!]
+  owner: ShoppinglistWhereInput
+  AND: [ItemWhereInput!]
+  OR: [ItemWhereInput!]
+  NOT: [ItemWhereInput!]
 }
 
-input ItemsWhereUniqueInput {
+input ItemWhereUniqueInput {
   id: ID
   name: String
 }
@@ -226,12 +226,12 @@ input ItemsWhereUniqueInput {
 scalar Long
 
 type Mutation {
-  createItems(data: ItemsCreateInput!): Items!
-  updateItems(data: ItemsUpdateInput!, where: ItemsWhereUniqueInput!): Items
-  updateManyItemses(data: ItemsUpdateManyMutationInput!, where: ItemsWhereInput): BatchPayload!
-  upsertItems(where: ItemsWhereUniqueInput!, create: ItemsCreateInput!, update: ItemsUpdateInput!): Items!
-  deleteItems(where: ItemsWhereUniqueInput!): Items
-  deleteManyItemses(where: ItemsWhereInput): BatchPayload!
+  createItem(data: ItemCreateInput!): Item!
+  updateItem(data: ItemUpdateInput!, where: ItemWhereUniqueInput!): Item
+  updateManyItems(data: ItemUpdateManyMutationInput!, where: ItemWhereInput): BatchPayload!
+  upsertItem(where: ItemWhereUniqueInput!, create: ItemCreateInput!, update: ItemUpdateInput!): Item!
+  deleteItem(where: ItemWhereUniqueInput!): Item
+  deleteManyItems(where: ItemWhereInput): BatchPayload!
   createShoppinglist(data: ShoppinglistCreateInput!): Shoppinglist!
   updateShoppinglist(data: ShoppinglistUpdateInput!, where: ShoppinglistWhereUniqueInput!): Shoppinglist
   updateManyShoppinglists(data: ShoppinglistUpdateManyMutationInput!, where: ShoppinglistWhereInput): BatchPayload!
@@ -258,9 +258,9 @@ type PageInfo {
 }
 
 type Query {
-  items(where: ItemsWhereUniqueInput!): Items
-  itemses(where: ItemsWhereInput, orderBy: ItemsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Items]!
-  itemsesConnection(where: ItemsWhereInput, orderBy: ItemsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ItemsConnection!
+  item(where: ItemWhereUniqueInput!): Item
+  items(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Item]!
+  itemsConnection(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ItemConnection!
   shoppinglist(where: ShoppinglistWhereUniqueInput!): Shoppinglist
   shoppinglists(where: ShoppinglistWhereInput, orderBy: ShoppinglistOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Shoppinglist]!
   shoppinglistsConnection(where: ShoppinglistWhereInput, orderBy: ShoppinglistOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): ShoppinglistConnection!
@@ -270,7 +270,7 @@ type Query {
 type Shoppinglist {
   id: ID!
   name: String!
-  lists(where: ItemsWhereInput, orderBy: ItemsOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Items!]
+  list(where: ItemWhereInput, orderBy: ItemOrderByInput, skip: Int, after: String, before: String, first: Int, last: Int): [Item!]
 }
 
 type ShoppinglistConnection {
@@ -282,15 +282,15 @@ type ShoppinglistConnection {
 input ShoppinglistCreateInput {
   id: ID
   name: String!
-  lists: ItemsCreateManyWithoutShoppinglistOwnerInput
+  list: ItemCreateManyWithoutOwnerInput
 }
 
-input ShoppinglistCreateOneWithoutListsInput {
-  create: ShoppinglistCreateWithoutListsInput
+input ShoppinglistCreateOneWithoutListInput {
+  create: ShoppinglistCreateWithoutListInput
   connect: ShoppinglistWhereUniqueInput
 }
 
-input ShoppinglistCreateWithoutListsInput {
+input ShoppinglistCreateWithoutListInput {
   id: ID
   name: String!
 }
@@ -332,29 +332,29 @@ input ShoppinglistSubscriptionWhereInput {
 
 input ShoppinglistUpdateInput {
   name: String
-  lists: ItemsUpdateManyWithoutShoppinglistOwnerInput
+  list: ItemUpdateManyWithoutOwnerInput
 }
 
 input ShoppinglistUpdateManyMutationInput {
   name: String
 }
 
-input ShoppinglistUpdateOneWithoutListsInput {
-  create: ShoppinglistCreateWithoutListsInput
-  update: ShoppinglistUpdateWithoutListsDataInput
-  upsert: ShoppinglistUpsertWithoutListsInput
+input ShoppinglistUpdateOneWithoutListInput {
+  create: ShoppinglistCreateWithoutListInput
+  update: ShoppinglistUpdateWithoutListDataInput
+  upsert: ShoppinglistUpsertWithoutListInput
   delete: Boolean
   disconnect: Boolean
   connect: ShoppinglistWhereUniqueInput
 }
 
-input ShoppinglistUpdateWithoutListsDataInput {
+input ShoppinglistUpdateWithoutListDataInput {
   name: String
 }
 
-input ShoppinglistUpsertWithoutListsInput {
-  update: ShoppinglistUpdateWithoutListsDataInput!
-  create: ShoppinglistCreateWithoutListsInput!
+input ShoppinglistUpsertWithoutListInput {
+  update: ShoppinglistUpdateWithoutListDataInput!
+  create: ShoppinglistCreateWithoutListInput!
 }
 
 input ShoppinglistWhereInput {
@@ -386,9 +386,9 @@ input ShoppinglistWhereInput {
   name_not_starts_with: String
   name_ends_with: String
   name_not_ends_with: String
-  lists_every: ItemsWhereInput
-  lists_some: ItemsWhereInput
-  lists_none: ItemsWhereInput
+  list_every: ItemWhereInput
+  list_some: ItemWhereInput
+  list_none: ItemWhereInput
   AND: [ShoppinglistWhereInput!]
   OR: [ShoppinglistWhereInput!]
   NOT: [ShoppinglistWhereInput!]
@@ -396,10 +396,11 @@ input ShoppinglistWhereInput {
 
 input ShoppinglistWhereUniqueInput {
   id: ID
+  name: String
 }
 
 type Subscription {
-  items(where: ItemsSubscriptionWhereInput): ItemsSubscriptionPayload
+  item(where: ItemSubscriptionWhereInput): ItemSubscriptionPayload
   shoppinglist(where: ShoppinglistSubscriptionWhereInput): ShoppinglistSubscriptionPayload
 }
 `

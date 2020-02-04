@@ -9,7 +9,7 @@ var models = [
     embedded: false
   },
   {
-    name: "Items",
+    name: "Item",
     embedded: false
   }
 ];

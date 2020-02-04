@@ -10,8 +10,21 @@ const resolvers = {
             }:{}
             return context.prisma.shoppinglists({
                 where,
-            });
+            })
         },
+        items: (root, args, context, info)=>{
+            return context.prisma.items()
+        }
+    },
+    Item: {
+        owner(root, args, context){
+            return context.prisma.item({id:root.id})
+        }
+    },
+    Shoppinglist: {
+        list(root, args, context){
+            return context.prisma.shoppinglist({id:root.id}).list()
+        }
     },
     Mutation: {
         postshopplinglist: (root, args, context) =>{
@@ -19,7 +32,16 @@ const resolvers = {
                 name:args.name,
             })
         },
-        postitem
+        postitem: (root, args, context,info) =>{
+            console.log(args.shoppinglistId)
+            return context.prisma.createItem({
+                name:args.item,
+                price: args.price,
+                owner:{
+                    connect: { id: args.shoppinglistId }
+                }
+            })
+        }
     }
 }
 const server =new GraphQLServer({
@@ -27,4 +49,5 @@ const server =new GraphQLServer({
     resolvers,
     context: {prisma},
 })
+
 server.start(() => console.log(`Server is running on http://localhost:4000`))
