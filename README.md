@@ -40,6 +40,11 @@ Tools used for development of this API are;
    - Run docker on your local machine
    -  Run ```prisma deploy``` .
 
+3. Run the application
+```
+   npm start
+```
+
 
 ## Contributors
 
