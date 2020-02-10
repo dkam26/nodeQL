@@ -1,0 +1,25 @@
+{
+  "name": "nodeql",
+  "version": "1.0.0",
+  "description": "demo",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start":"node index.js"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/dkam26/nodeQL.git"
+  },
+  "author": "kamara",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/dkam26/nodeQL/issues"
+  },
+  "homepage": "https://github.com/dkam26/nodeQL#readme",
+  "dependencies": {
+    "graphql": "^14.6.0",
+    "graphql-yoga": "^1.18.3",
+    "prisma-client-lib": "^1.34.10"
+  }
+}

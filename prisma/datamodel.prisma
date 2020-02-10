@@ -1,20 +1,11 @@
-type User {
-    id: ID! @id
-    name: String!
-    email: String! @unique
-    password: String!
-    shoppinglists: [Shoppinglist!]!
-}
-
 type Shoppinglist {
     id: ID! @id
-    name: String!
-    createdAt: DateTime! @createdAt
-    items:[Item!]!
+    name: String! @unique
+    list: [Item!]!
 }
-
 type Item {
     id: ID! @id
-    name: String!
+    name: String! @unique
     price: Int!
+    owner:Shoppinglist @relation(link: INLINE)
 }
