@@ -1,6 +1,6 @@
  type Query {
     shoppinglists(name:String) : [Shoppinglist!]
-    items(name:String) : [Item!]
+    items (name: String): [Item!]
  }
  type Shoppinglist {
     id: ID!

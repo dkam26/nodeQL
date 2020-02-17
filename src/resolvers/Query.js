@@ -9,7 +9,15 @@ async function shoppinglists(parent, args, context){
 }
 
 async function items(parent, args, context){
-    return await context.prisma.items()
+    const where = args.name ? {
+        OR: [
+         { owner:{id:args.name }}
+        ],
+    }:{}
+   const items = await context.prisma.items({
+       where
+   })
+   return items
 
 }
 module.exports = {
