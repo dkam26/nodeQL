@@ -17,6 +17,7 @@ type Item {
 }
 type Mutation {
   postshopplinglist(name: String!, item: String, price: Int): Shoppinglist!
+  updatelist(oldname: String!, newname: String!): Shoppinglist!
   postitem(shoppinglistId: String, item: String, price: Int ):Item!
 
 }

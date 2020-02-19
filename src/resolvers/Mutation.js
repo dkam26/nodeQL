@@ -15,7 +15,21 @@ async function postitem(parent, args, context){
     })
 
 }
+
+async function updatelist(parent, args, context){
+    const where = args.newname ? {
+        OR:[{name_contains:args.newname}],
+    }:{}
+    return context.prisma.updateShoppinglist({
+        data:{name:args.newname},
+        where: {
+            name: args.oldname
+          }
+    })
+
+}
 module.exports = {
     postshopplinglist,
-    postitem
+    postitem,
+    updatelist
 }
